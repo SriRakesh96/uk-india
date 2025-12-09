@@ -31,6 +31,13 @@
     <!-- Bootstrap CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
+    <!-- Add Web App Icons -->
+    <!-- 192x192 px icon for home screen -->
+    <link rel="icon" sizes="192x192" href="https://cdn-icons-png.flaticon.com/512/1827/1827504.png">
+    
+    <!-- Add Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    
     <style>
         body {
             background:#eef2f3;
@@ -91,10 +98,18 @@
             hours -= 24;
         }
 
-        // Format to HH:MM
+        // Convert to 12-hour format with AM/PM
+        let period = hours >= 12 ? "PM" : "AM";
+        if (hours > 12) {
+            hours -= 12;
+        } else if (hours === 0) {
+            hours = 12;
+        }
+
+        // Format time to HH:MM AM/PM
         let result =
             (hours < 10 ? "0" : "") + hours + ":" +
-            (minutes < 10 ? "0" : "") + minutes;
+            (minutes < 10 ? "0" : "") + minutes + " " + period;
 
         document.getElementById("indiaTime").value = result;
     });
